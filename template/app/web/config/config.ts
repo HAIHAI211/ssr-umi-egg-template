@@ -9,6 +9,9 @@ export default defineConfig({
     devServerRender: false,
   },
   ignoreMomentLocale: true,
+  chainWebpack(config) {
+		config.plugin("moment2dayjs").use("antd-dayjs-webpack-plugin")
+	},
   hash: true,
   outputPath: '../public',
   publicPath: "/public/",
