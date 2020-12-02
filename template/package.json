@@ -5,22 +5,30 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "egg-scripts start --port=7001 --daemon --title=egg-umi-ssr --env=prod",
+    "start": "egg-scripts start --port=80 --title=egg-umi-ssr --workers=3 --env=prod",
+    "teststart": "egg-scripts start --port=80 --title=egg-umi-ssr --workers=1 --env=prod",
+    "oldstart": "egg-scripts start --port=80 --daemon --title=egg-umi-ssr --env=prod",
+    "prodstart": "egg-scripts start --port=443 --daemon --title=egg-umi-ssr --env=prod",
     "stop": "egg-scripts stop --title=egg-umi-ssr",
-    "dev": "egg-bin dev --port=7001 --sticky",
+    "dev": "yarn buildwebp && egg-bin dev --port=7001 --sticky",
     "build": "cross-env APP_ROOT=app/web umi build",
+    "localbuild": "cross-env UMI_ENV=local APP_ROOT=app/web umi build",
+    "analyze": "cross-env UMI_ENV=local ANALYZE=1 APP_ROOT=app/web umi build",
     "debug": "cross-env RM_TMPDIR=none COMPRESS=none egg-bin debug",
     "test": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "buildwebp": "node buildwebp.js"
   },
   "engines": {
     "node": ">=10.0.0"
   },
   "dependencies": {
     "@umijs/preset-react": "^1.5.17",
+    "axios": "^0.21.0",
+    "clipboard": "^2.0.6",
     "cross-env": "^5.2.0",
     "egg": "^2.12.0",
     "egg-scripts": "^2.10.0",
@@ -30,6 +38,7 @@
     "qs": "^6.7.0",
     "umi": "^3.2.9",
     "url": "^0.11.0",
+    "postcss-px-to-viewport": "^1.1.1",
     "antd-dayjs-webpack-plugin": "^1.0.1"
   },
   "devDependencies": {
@@ -40,9 +49,11 @@
     "babel-plugin-import": "^1.12.0",
     "egg-bin": "^4.9.0",
     "egg-mock": "^3.20.1",
-    "eslint": "^5.8.0",
+    "eslint": "^7.13.0",
     "eslint-config-egg": "^7.1.0",
+    "fs-extra": "^9.0.1",
     "redbox-react": "^1.5.0",
+    "sharp": "^0.26.2",
     "webstorm-disable-index": "^1.2.0"
   },
   "repository": {

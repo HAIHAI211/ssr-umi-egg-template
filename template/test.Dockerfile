@@ -8,4 +8,4 @@ COPY . /usr/src/lx-gw
 
 EXPOSE 80
 
-CMD yarn start
+CMD yarn teststart
