@@ -2,8 +2,8 @@
  * @Author: Harrison
  * @Date: 2020-11-03 15:51:25
  * @LastEditors: Harrison
- * @LastEditTime: 2020-11-29 00:43:22
- * @FilePath: /lx-gw/app/web/config/config.ts
+ * @LastEditTime: 2020-12-02 11:43:11
+ * @FilePath: /ssr-umi-egg-template/template/app/web/config/config.ts
  * @Description: file content
  */
 import { defineConfig } from "umi"
@@ -51,19 +51,8 @@ export default defineConfig({
 	nodeModulesTransform: {
 		type: "none",
 	},
-	routes: [
-		{ path: "/", component: "@/pages/index/index" },
-		// { path: "/test", component: "@/pages/test/index" },
-		{ path: "/about", component: "@/pages/about/about" },
-		{
-			// path: '/ck_cw/:productId?/:sourceCategory?',
-			path: "/ck_cw",
-			component: "@/pages/ck_cw/ck_cw",
-		},
-		{
-			path: "/ck_cwkc",
-			component: "@/pages/ck_cwkc/ck_cwkc",
-		},
+	routes: [// path: '/ck_cw/:productId?/:sourceCategory?',
+		{ path: "/", component: "@/pages/index/index" }
 	],
 	theme: {
 		"primary-color": "#18BB94",

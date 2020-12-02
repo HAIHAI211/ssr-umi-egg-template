@@ -3,7 +3,7 @@ import styles from './index.less'
 
 const IndexPage = () => {
     return (
-        <div className={styles.IndexPage}></div>
+        <div className={styles.indexPage}>首页 服务端渲染</div>
     )
 }
 export default IndexPage
