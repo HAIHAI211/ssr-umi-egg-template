@@ -1,10 +1,11 @@
-FROM node:12.2.0-alpine
+#FROM node:12.2.0-alpine
+FROM registry.cn-beijing.aliyuncs.com/lxnamespace/node:alpine
 
-RUN mkdir -p /usr/src/lx-gw
+RUN mkdir -p /usr/src/{{name}}
 
-WORKDIR /usr/src/lx-gw
+WORKDIR /usr/src/{{name}}
 
-COPY . /usr/src/lx-gw
+COPY . /usr/src/{{name}}
 
 EXPOSE 80
 
