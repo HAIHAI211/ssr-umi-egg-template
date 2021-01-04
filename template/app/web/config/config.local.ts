@@ -2,8 +2,8 @@
  * @Author: Harrison
  * @Date: 2020-11-04 15:39:24
  * @LastEditors: Harrison
- * @LastEditTime: 2020-11-29 00:05:13
- * @FilePath: /lx-gw/app/web/config/config.local.ts
+ * @LastEditTime: 2021-01-04 11:13:37
+ * @FilePath: /ssr-umi-egg-template/template/app/web/config/config.local.ts
  * @Description: file content
  */
 import { defineConfig } from "umi"
@@ -15,7 +15,10 @@ export default defineConfig({
 	},
 	define: {
 		IDENTITY_BASE_URL: "/identity",
+		SERVER_IDENTITY_BASE_URL: "http://harbor-ex-test.linxuan.site",
 		API_URL: "/api",
+		SERVER_API_URL: "http://merchant-api-test.linxuan.site",
+		APPID: "wx861d3becd4f4f559",
 		IS_DEV: true,
 		IS_TEST: false,
 		IS_PROD: false,
