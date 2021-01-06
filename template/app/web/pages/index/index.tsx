@@ -149,7 +149,8 @@ IndexPage.getInitialProps = async (props: any) => {
             const jsonData = parseJson({
                 json, supportWebp, data: {
                     productId: productInfo.productId,
-                    runEnv: IS_PROD ? 'prod' : 'test'
+                    runEnv: IS_PROD ? 'prod' : 'test',
+                    env: isWechat ? 'wechat' : 'nowechat'
                 }
             })
             const [versionInfos, versions] = parseVersions(jsonData)
