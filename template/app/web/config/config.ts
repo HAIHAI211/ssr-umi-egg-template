@@ -2,13 +2,14 @@
  * @Author: Harrison
  * @Date: 2020-11-03 15:51:25
  * @LastEditors: Harrison
- * @LastEditTime: 2020-12-02 11:43:11
+ * @LastEditTime: 2021-01-06 22:42:58
  * @FilePath: /ssr-umi-egg-template/template/app/web/config/config.ts
  * @Description: file content
  */
 import { defineConfig } from "umi"
 import { join } from "path"
 import pxToViewPort from "postcss-px-to-viewport"
+import routes from '../routes'
 
 const cwd = process.cwd()
 const manifest = join(cwd, "config/manifest.json")
@@ -51,9 +52,7 @@ export default defineConfig({
 	nodeModulesTransform: {
 		type: "none",
 	},
-	routes: [// path: '/ck_cw/:productId?/:sourceCategory?',
-		{ path: "/", component: "@/pages/index/index" }
-	],
+	routes,
 	theme: {
 		"primary-color": "#18BB94",
 		"brand-primary": "#18BB94",
