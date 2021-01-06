@@ -2,7 +2,7 @@
  * @Author: Harrison
  * @Date: 2020-07-17 14:32:06
  * @LastEditors: Harrison
- * @LastEditTime: 2021-01-02 17:55:56
+ * @LastEditTime: 2021-01-06 11:11:32
  * @Description: http请求接口页
  */
 
@@ -10,6 +10,36 @@ import { HTTP, ORDER_STATUS, serviceDeconstruct } from "./config"
 // import { isWeixinBrowser } from '@/utils/index';
 import qs from "qs"
 import { isBrowser } from "umi"
+import axios from 'axios'
+
+
+/**
+ * @description: 获取json
+ * @param {
+ * 	dir: 如'/givinglesson/index-page'
+ * }
+ * @return {*}
+ */
+interface IFetchJsonProps {
+	dir: string
+}
+export async function fetchJson({dir}: IFetchJsonProps) {
+	try {
+		const d = new Date()
+		d.setMinutes(0)
+		d.setSeconds(0)
+		const timestamp = d.getTime()
+		const result = await axios.get(`/${IS_PROD ? 'prod' : 'test'}/origin${dir}/data.json?t=${timestamp}`, {
+			baseURL: 'https://lx-static.highso.com.cn/frontend/merchant'
+		})
+		console.log('json内容', result)
+		if (!result || !result.data) return null
+		return result.data
+	} catch(e) {
+		return null
+	}
+}
+
 
 /**
  * @description: 检查登录

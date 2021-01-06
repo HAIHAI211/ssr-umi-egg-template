@@ -40,7 +40,8 @@
     "umi": "^3.2.9",
     "url": "^0.11.0",
     "postcss-px-to-viewport": "^1.1.1",
-    "antd-dayjs-webpack-plugin": "^1.0.1"
+    "antd-dayjs-webpack-plugin": "^1.0.1",
+    "lx-json-component": "https://sunzheng%40linxuan.onaliyun.com:haihai211%24@codeup.aliyun.com/5e9673a6e17c0e0001fd893d/fe/lx-json-component.git"
   },
   "devDependencies": {
     "@types/qs": "^6.5.3",
