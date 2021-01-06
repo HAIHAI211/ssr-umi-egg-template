@@ -122,7 +122,45 @@ const IndexPage = (props: IIndexPageProps) => {
     )
 }
 export default IndexPage
-IndexPage.getInitialProps = async ({ store, isServer, history, match, route, isMobile, supportWebp }: any) => {
+IndexPage.getInitialProps = async (props: any) => {
+    const { store, isServer, history, match, route, isMobile, isWechat, supportWebp } = props
 
-    return { isMobile, supportWebp }
+    console.log('getInitialProps------start-----------')
+    console.log('isServer', isServer)
+    console.log('history', history)
+    console.log('supportWebp', supportWebp)
+    console.log('getInitialProps------end-----------')
+
+    // 从url获取merchantpro
+    const { merchantpro, version: urlVersion } = history.location.query
+    // 获取json
+    const json = await fetchJson({
+        dir: '/givinglesson/index-page'
+    })
+    console.log('JSON', json)
+    // 获取商品信息
+    if (merchantpro && json) {
+        console.log('merchantpro', merchantpro)
+        try {
+            const { data: productInfo } = await fetchGivingLessonProductInfo(merchantpro)
+            console.log('商品id', productInfo.productId)
+            // todo: 从osscdn获取json文件
+            // return props
+            const jsonData = parseJson({
+                json, supportWebp, data: {
+                    productId: productInfo.productId,
+                    runEnv: IS_PROD ? 'prod' : 'test'
+                }
+            })
+            const [versionInfos, versions] = parseVersions(jsonData)
+            const currentVersion = getVersion({ versions, urlVersion });
+            const jsonDataOfCurrentVersion = jsonData.find((item: any) => item.version === currentVersion)
+            return { isServer, supportWebp, isMobile, isWechat, currentVersion, jsonData, jsonDataOfCurrentVersion, merchantpro, productInfo }
+        } catch (e) {
+            console.log('获取商品信息报错', e)
+            return { isServer, supportWebp, isMobile, isWechat }
+        }
+    }
+
+    return { isServer, supportWebp, isMobile, isWechat }
 }
