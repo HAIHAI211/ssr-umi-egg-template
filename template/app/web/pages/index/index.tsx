@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Toast } from 'antd-mobile'
+import { history } from 'umi'
 import styles from './index.less'
 
 import {
@@ -12,14 +13,21 @@ import {
     fetchJson
 } from '@/http'
 
+// import json from '@/data/data.json'
 import { parseJson, parseVersions, getVersion, parseComponent } from 'lx-json-component'
 import { useAuth } from '@/hooks'
+
+
+
 
 interface IIndexPageProps extends ISSRPageProps {
     merchantpro: string | number
     productInfo: IFetchGivingLessonProductInfoReturn
 }
+
 const IndexPage = (props: IIndexPageProps) => {
+    // console.log('props', props)
+    // console.log('jsonDataOfCurrentVersion', props.jsonDataOfCurrentVersion)
 
     console.log('是否服务端渲染', props.isServer)
     console.log('是否是微信环境', props.isWechat)
@@ -28,14 +36,15 @@ const IndexPage = (props: IIndexPageProps) => {
         isWechat: props.isWechat
     })
 
+
     const gioSendEvent = (eventName: string) => {
         if (!props.productInfo) return
-        // const { sourceCategory, productId, merchantId } = props.productInfo
+        const { sourceCategory, productId, merchantId } = props.productInfo
         console.log('gio事件触发', eventName)
         gio && gio("track", eventName, {
-            // sourceCategory,
-            // productId,
-            // merchantId,
+            sourceCategory,
+            productId,
+            merchantId,
             version: props.currentVersion
         });
     }
@@ -110,6 +119,11 @@ const IndexPage = (props: IIndexPageProps) => {
     }
 
 
+    useEffect(() => {
+        gioSendEvent("merchantgift_pageview");
+    }, [props.productInfo])
+
+
     return (
         <div className={styles.page}>
             {
@@ -122,6 +136,9 @@ const IndexPage = (props: IIndexPageProps) => {
         </div>
     )
 }
+
+
+
 export default IndexPage
 IndexPage.getInitialProps = async (props: any) => {
     const { store, isServer, history, match, route, isMobile, isWechat, supportWebp } = props
@@ -138,20 +155,19 @@ IndexPage.getInitialProps = async (props: any) => {
     const json = await fetchJson({
         dir: '/givinglesson/index-page'
     })
-    console.log('JSON', json)
+    // console.log('JSON', json)
     // 获取商品信息
     if (merchantpro && json) {
         console.log('merchantpro', merchantpro)
         try {
             const { data: productInfo } = await fetchGivingLessonProductInfo(merchantpro)
             console.log('商品id', productInfo.productId)
-            // todo: 从osscdn获取json文件
             // return props
             const jsonData = parseJson({
                 json, supportWebp, data: {
                     productId: productInfo.productId,
-                    runEnv: IS_PROD ? 'prod' : 'test',
-                    env: isWechat ? 'wechat' : 'nowechat'
+                    env: isWechat ? 'wechat' : 'nowechat',
+                    runEnv: IS_PROD ? 'prod' : 'test'
                 }
             })
             const [versionInfos, versions] = parseVersions(jsonData)

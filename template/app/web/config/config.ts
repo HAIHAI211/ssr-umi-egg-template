@@ -2,61 +2,40 @@
  * @Author: Harrison
  * @Date: 2020-11-03 15:51:25
  * @LastEditors: Harrison
- * @LastEditTime: 2021-01-06 22:42:58
- * @FilePath: /ssr-umi-egg-template/template/app/web/config/config.ts
+ * @LastEditTime: 2021-01-07 15:01:04
+ * @FilePath: /merchant-ssr/app/web/config/config.ts
  * @Description: file content
  */
 import { defineConfig } from "umi"
 import { join } from "path"
 import pxToViewPort from "postcss-px-to-viewport"
-import routes from '../routes'
+import routes from "../routes"
 
 const cwd = process.cwd()
 const manifest = join(cwd, "config/manifest.json")
 
 export default defineConfig({
 	ssr: {
-		devServerRender: true,
 		mode: "stream",
 		// forceInitial: true
 	},
 	inlineLimit: 1000, // 1k
-	// dynamicImport: {
-	// },
 	hash: true,
 	ignoreMomentLocale: true,
-	// plugins: ["antd-dayjs-webpack-plugin"],
-	chainWebpack(config) {
+	chainWebpack(config: any) {
 		config.plugin("moment2dayjs").use("antd-dayjs-webpack-plugin")
 	},
 	outputPath: "../public",
-	// manifest: {
-	// 	fileName: "../../config/manifest.json",
-	// 	// 为 ''，不然会有两个 /
-	// 	// publicPath: "/A/",
-	// },
-	// // publicPath: "/B/",
 	title: "林选教育",
 	favicon: "https://lx-static.highso.com.cn/frontend/favicon.ico",
-	// locale: {
-	// 	default: "zh-CN",
-	// 	antd: false,
-	// 	title: false,
-	// 	baseNavigator: true,
-	// 	baseSeparator: "-",
-	// },
-	// dva: {
-	// 	immer: true,
-	// 	// hmr: false,
-	// },
 	nodeModulesTransform: {
 		type: "none",
 	},
 	routes,
-	theme: {
-		"primary-color": "#18BB94",
-		"brand-primary": "#18BB94",
-	},
+	// theme: {
+	// 	"primary-color": "#18BB94",
+	// 	"brand-primary": "#18BB94",
+	// },
 	targets: {
 		ie: 10,
 		chrome: 49,
@@ -65,6 +44,16 @@ export default defineConfig({
 		edge: 13,
 		ios: 10,
 	},
+	// extraBabelPlugins: [
+	// 	[
+	// 		"import",
+	// 		{
+	// 			libraryName: "@ant-design/icons",
+	// 			libraryDirectory: "", // defaults to 'lib'
+	// 			camel2DashComponentName: false, // defaults to true
+	// 		},
+	// 	],
+	// ],
 	extraPostCSSPlugins: [
 		pxToViewPort({
 			unitToConvert: "rpx",

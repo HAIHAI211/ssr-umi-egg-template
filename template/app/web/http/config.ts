@@ -2,8 +2,8 @@
  * @Author: Harrison
  * @Date: 2020-10-22 19:45:59
  * @LastEditors: Harrison
- * @LastEditTime: 2021-01-03 12:35:09
- * @FilePath: /merchant-ssr/app/web/http/config.ts
+ * @LastEditTime: 2021-01-08 10:07:18
+ * @FilePath: /ssr-umi-egg-template/template/app/web/http/config.ts
  * @Description: http通用配置
  */
 import axios from 'axios';
@@ -128,7 +128,7 @@ const serviceDeconstruct = async (axiosPromise, options: Options = {}) => {
       throw new Error(res.data.msg);
     }
   } catch (e) {
-    isBrowser() && Toast.info(e.message);
+    isBrowser() && Toast.info(e.message || e.toString());
     throw e;
   }
 };

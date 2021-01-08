@@ -2,8 +2,8 @@
  * @Author: Harrison
  * @Date: 2020-11-04 15:39:24
  * @LastEditors: Harrison
- * @LastEditTime: 2021-01-04 11:13:37
- * @FilePath: /ssr-umi-egg-template/template/app/web/config/config.local.ts
+ * @LastEditTime: 2021-01-02 18:16:56
+ * @FilePath: /merchant-ssr/app/web/config/config.local.ts
  * @Description: file content
  */
 import { defineConfig } from "umi"
@@ -11,7 +11,7 @@ import { defineConfig } from "umi"
 const publicPath = "/public/"
 export default defineConfig({
 	ssr: {
-		forceInitial: true
+		devServerRender: true
 	},
 	define: {
 		IDENTITY_BASE_URL: "/identity",

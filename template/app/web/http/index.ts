@@ -1,8 +1,9 @@
+
 /*
  * @Author: Harrison
  * @Date: 2020-07-17 14:32:06
  * @LastEditors: Harrison
- * @LastEditTime: 2021-01-06 11:11:32
+ * @LastEditTime: 2021-01-08 10:07:43
  * @Description: http请求接口页
  */
 
@@ -13,11 +14,11 @@ import { isBrowser } from "umi"
 import axios from 'axios'
 
 
+
+
 /**
  * @description: 获取json
- * @param {
- * 	dir: 如'/givinglesson/index-page'
- * }
+ * @param {*}
  * @return {*}
  */
 interface IFetchJsonProps {
@@ -38,6 +39,7 @@ export async function fetchJson({dir}: IFetchJsonProps) {
 	} catch(e) {
 		return null
 	}
+
 }
 
 
@@ -133,10 +135,16 @@ export async function sendCode(props: ISendCodeProps) {
 				adUrl: encodeURI(window.location.href),
 			}),
 		}),
+		// new Promise((resolve, reject) => {
+		// 	setTimeout(() => {
+		// 		reject('发送太频繁')
+		// 	}, 500)
+		// }),
 		{
 			successCodes: [0, 100, 200, 600, 700, 800, 900],
 		}
 	)
+
 	return new Promise((resolve, reject) => {
 		if (code == 400) {
 			//唤醒滑动验证

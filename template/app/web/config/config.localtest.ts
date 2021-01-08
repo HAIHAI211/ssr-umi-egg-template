@@ -1,10 +1,10 @@
 /*
  * @Author: Harrison
- * @Date: 2020-10-30 15:06:29
+ * @Date: 2021-01-07 21:09:39
  * @LastEditors: Harrison
- * @LastEditTime: 2021-01-02 18:17:15
- * @FilePath: /merchant-ssr/app/web/config/config.test.ts
- * @Description: file content
+ * @LastEditTime: 2021-01-07 21:13:02
+ * @FilePath: /merchant-ssr/app/web/config/config.localtest.ts
+ * @Description: (本地build的test环境)
  */
 import { defineConfig } from "umi"
 
@@ -18,8 +18,8 @@ export default defineConfig({
 	define: {
 		IDENTITY_BASE_URL: "https://harbor-ex-test.linxuan.site",
 		API_URL: "https://merchant-api-test.linxuan.site",
-		SERVER_IDENTITY_BASE_URL: "http://harbor-exchange-test:8080",
-		SERVER_API_URL: "http://linxuan-markone:8080",
+		SERVER_IDENTITY_BASE_URL: "https://harbor-ex-test.linxuan.site",
+		SERVER_API_URL: "https://merchant-api-test.linxuan.site",
 		APPID: "wx88dcbef4f2854b7e",
 		IS_DEV: false,
 		IS_TEST: true,

@@ -2,20 +2,18 @@
  * @Author: Harrison
  * @Date: 2020-10-30 15:06:19
  * @LastEditors: Harrison
- * @LastEditTime: 2021-01-04 11:13:53
- * @FilePath: /ssr-umi-egg-template/template/app/web/config/config.prod.ts
+ * @LastEditTime: 2021-01-07 21:11:11
+ * @FilePath: /merchant-ssr/app/web/config/config.prod.ts
  * @Description: file content
  */
 import { defineConfig } from "umi"
 
-const publicPath = "//lx-cdn.highso.com.cn/lx-gw/public/"
+const publicPath = "//lx-cdn.highso.com.cn/merchant-ssr/public/"
 export default defineConfig({
-	// publicPath: "//lx-cdn.highso.com.cn/lx-gw/",
 	publicPath,
 	manifest: {
 		fileName: "../../config/manifest.json",
 		publicPath,
-		// publicPath: "//lx-cdn.highso.com.cn/lx-gw/public/",
 	},
 	define: {
 		IDENTITY_BASE_URL: "https://harbor-ex.linxuan.site",
