@@ -2,7 +2,7 @@
  * @Author: Harrison
  * @Date: 2020-11-05 10:28:08
  * @LastEditors: Harrison
- * @LastEditTime: 2021-01-06 11:19:17
+ * @LastEditTime: 2021-01-09 19:15:30
  * @FilePath: /ssr-umi-egg-template/template/typings.d.ts
  * @Description: file content
  */
@@ -27,3 +27,21 @@ interface ISSRPageProps {
   jsonData: any
   jsonDataOfCurrentVersion: any
 }
+
+declare const API_URL: string
+declare const SERVER_API_URL: string
+declare const SERVER_IDENTITY_BASE_URL: string
+declare const IDENTITY_BASE_URL: string
+declare const APPID: string
+declare const IS_PROD: boolean
+declare const IS_TEST: boolean
+
+declare const gio: any
+
+declare const getNVCVal: any
+declare const getNC: any
+declare const NoCaptcha: any
+declare const _nvc_nc: any
+declare const getSC: any
+declare const getLC: any
+declare const nvcReset: any

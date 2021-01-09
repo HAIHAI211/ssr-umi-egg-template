@@ -2,7 +2,7 @@
  * @Author: Harrison
  * @Date: 2020-10-22 19:45:59
  * @LastEditors: Harrison
- * @LastEditTime: 2021-01-08 10:07:18
+ * @LastEditTime: 2021-01-09 19:08:29
  * @FilePath: /ssr-umi-egg-template/template/app/web/http/config.ts
  * @Description: http通用配置
  */
@@ -82,7 +82,7 @@ interface Options {
   suitTable?: boolean;
 }
 
-const serviceDeconstruct = async (axiosPromise, options: Options = {}) => {
+const serviceDeconstruct = async (axiosPromise:any, options: Options = {}) => {
   // 如果不想解构，就正常返回
   options = {
     successCodes: [0],
@@ -94,7 +94,7 @@ const serviceDeconstruct = async (axiosPromise, options: Options = {}) => {
   try {
     const res = await axiosPromise;
     // console.log('promise 请求 结果', res)
-    if (res && res.data && options.successCodes.includes(res.data.code)) {
+    if (res && res.data && options?.successCodes?.includes(res.data.code)) {
       const { code, data } = res.data;
       if (!options.suitTable) return { code, data };
       if (Array.isArray(data)) {
