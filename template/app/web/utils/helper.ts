@@ -2,7 +2,7 @@
  * @Author: Harrison
  * @Date: 2020-12-23 13:14:28
  * @LastEditors: Harrison
- * @LastEditTime: 2021-01-06 11:16:36
+ * @LastEditTime: 2021-01-12 16:52:06
  * @FilePath: /ssr-umi-egg-template/template/app/web/utils/helper.ts
  * @Description: file content
  */
@@ -60,7 +60,7 @@ export const supportWebp = () => {
 // }
 
 export const isWechat = () => {
-	return /micromessenger/.test(navigator.userAgent)
+	return /micromessenger/i.test(navigator.userAgent)
 }
 
 // export const getRedirectUri = () => {
