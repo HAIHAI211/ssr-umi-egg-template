@@ -11,6 +11,7 @@ declare module '*.less';
 declare module "*.png";
 declare module "*.json";
 declare module "postcss-px-to-viewport";
+declare module "jweixin-module"
 declare module '*.svg' {
   export function ReactComponent(props: React.SVGProps<SVGSVGElement>): React.ReactElement
   const url: string
