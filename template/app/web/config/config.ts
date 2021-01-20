@@ -22,9 +22,9 @@ export default defineConfig({
 	inlineLimit: 1000, // 1k
 	hash: true,
 	ignoreMomentLocale: true,
-	chainWebpack(config: any) {
-		config.plugin("moment2dayjs").use("antd-dayjs-webpack-plugin")
-	},
+	// chainWebpack(config: any) {
+	// 	config.plugin("moment2dayjs").use("antd-dayjs-webpack-plugin")
+	// },
 	outputPath: "../public",
 	title: "林选教育",
 	favicon: "https://lx-static.highso.com.cn/frontend/favicon.ico",
@@ -37,7 +37,6 @@ export default defineConfig({
 	// 	"brand-primary": "#18BB94",
 	// },
 	targets: {
-		ie: 10,
 		chrome: 49,
 		firefox: 64,
 		safari: 10,
@@ -54,6 +53,15 @@ export default defineConfig({
 	// 		},
 	// 	],
 	// ],
+	extraBabelPlugins: [
+		[
+			"import",
+			{
+		  libraryName: "antd-mobile",
+		  style: 'css'
+			},
+		],
+	],
 	extraPostCSSPlugins: [
 		pxToViewPort({
 			unitToConvert: "rpx",
