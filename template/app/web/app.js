@@ -9,7 +9,7 @@
 
 import { history } from "umi"
 import { Toast } from "antd-mobile"
-import { isMobile, isWechat, supportWebp } from "./utils/helper"
+import { isMobile, isWechat, supportWebp } from "lx-json-component/src/utils"
 
 Toast.config({
 	duration: 1.5,

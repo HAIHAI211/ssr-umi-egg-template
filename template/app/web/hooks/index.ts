@@ -8,7 +8,6 @@
  */
 import React, { useEffect } from "react"
 import { checkLogin } from "@/http"
-// import {getRedirectUri} from '@/utils/helper'
 import { history } from "umi"
 
 interface IUseWechatAuthProps {

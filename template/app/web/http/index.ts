@@ -8,7 +8,6 @@
  */
 
 import { HTTP, ORDER_STATUS, serviceDeconstruct } from "./config"
-// import { isWeixinBrowser } from '@/utils/index';
 import qs from "qs"
 import { isBrowser } from "umi"
 import axios from 'axios'
