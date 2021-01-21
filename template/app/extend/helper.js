@@ -20,6 +20,11 @@ exports.supportWebp = (ctx) => {
 	return supportWebp
 }
 
+exports.isWechat = (ctx) => {
+	const ua = ctx.get("user-agent") || ""
+	return (/micromessenger/i.test(ua))
+}
+
 const getIphoneOsVersion = (ctx) => {
 	const ua = ctx.get("user-agent") || ""
 	if (/iphone\s+os\s+(\S+)\s+.*/i.test(ua)) {

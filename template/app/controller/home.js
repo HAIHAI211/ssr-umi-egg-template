@@ -9,10 +9,11 @@ class HomeController extends Controller {
     const { ctx, app } = this
     global.host = `${ctx.request.protocol}://${ctx.request.host}`
     global.href = ctx.request.href;
-    global._cookies = ctx.helper.parseCookie(ctx);
-    global._navigatorLang = ctx.helper.parseNavLang(ctx);
+    // global._cookies = ctx.helper.parseCookie(ctx);
+    // global._navigatorLang = ctx.helper.parseNavLang(ctx);
     global._isMobile = ctx.helper.isMobile(ctx)
     global._supportWebp = ctx.helper.supportWebp(ctx);
+    global._isWechat = ctx.helper.isWechat(ctx);
     /**
      *  这里可以根据自己的环境配置修改，
      *  规则就是开发环境需要删除require缓存
@@ -33,7 +34,8 @@ class HomeController extends Controller {
       path: ctx.url,
       getInitialPropsCtx: {
         isMobile: global._isMobile,
-        supportWebp: global._supportWebp
+        supportWebp: global._supportWebp,
+        isWechat: global._isWechat
       },
       htmlTemplate,
     })
