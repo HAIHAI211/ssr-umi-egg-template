@@ -1,0 +1,32 @@
+import { defineConfig } from "umi";
+import NOT_PROD_COMMON_CONFIG from "./common/not-prod";
+const { ID_URL_TEST, API_URL_TEST, APP_ID_TEST } = require("lx-json-component/src/constants")
+
+export default defineConfig({
+  ssr: {
+      devServerRender: true
+  },
+  define: {
+    ID_URL: "/identity",
+    API_URL: "/api",
+    SERVER_ID_URL: ID_URL_TEST,
+    SERVER_API_URL: API_URL_TEST,
+    APPID: APP_ID_TEST,
+    IS_DEV: true,
+    IS_CSR: false,
+    RUN_ENV: "ssrdev"
+  },
+  proxy: {
+    "/identity": {
+      target: ID_URL_TEST,
+      changeOrigin: true,
+      pathRewrite: { "^/identity": "" },
+    },
+    "/api": {
+      target: API_URL_TEST,
+      changeOrigin: true,
+      pathRewrite: { "^/api": "" },
+    },
+  },
+  ...NOT_PROD_COMMON_CONFIG
+});

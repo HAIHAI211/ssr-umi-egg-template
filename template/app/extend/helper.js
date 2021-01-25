@@ -1,3 +1,11 @@
+/*
+ * @Author: Harrison
+ * @Date: 2020-12-23 12:05:37
+ * @LastEditors: Harrison
+ * @LastEditTime: 2020-12-24 12:20:34
+ * @FilePath: /merchant-ssr/app/extend/helper.js
+ * @Description: file content
+ */
 exports.isMobile = (ctx) => {
 	const source = ctx.get("user-agent") || ""
 	let isMobile = false

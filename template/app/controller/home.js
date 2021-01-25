@@ -1,9 +1,21 @@
+/*
+ * @Author: Harrison
+ * @Date: 2020-12-23 12:05:37
+ * @LastEditors: Harrison
+ * @LastEditTime: 2020-12-23 12:23:19
+ * @FilePath: /merchant-ssr/app/controller/home.js
+ * @Description: file content
+ */
 const { Controller } = require('egg')
 
 class HomeController extends Controller {
   constructor(ctx) {
     super(ctx)
-    this.serverRender = require('../public/umi.server')
+    try {
+      this.serverRender = require('../public/umi.server')
+    } catch(e) {
+      console.error("serverRender require error",e)
+    }
   }
   async index() {
     const { ctx, app } = this
@@ -27,7 +39,7 @@ class HomeController extends Controller {
     }
 
     // 先走 eggjs 的v iew 渲染
-    const htmlTemplate = await ctx.view.render('index.html')
+    // const htmlTemplate = await ctx.view.render('index.html')
 
     // 将 html 模板传到服务端渲染函数中
     const { error, html } = await this.serverRender({
@@ -37,7 +49,7 @@ class HomeController extends Controller {
         supportWebp: global._supportWebp,
         isWechat: global._isWechat
       },
-      htmlTemplate,
+      // htmlTemplate,
     })
 
     if (error) {
