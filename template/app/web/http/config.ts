@@ -2,13 +2,22 @@
  * @Author: Harrison
  * @Date: 2020-10-22 19:45:59
  * @LastEditors: Harrison
- * @LastEditTime: 2021-01-09 19:08:29
- * @FilePath: /ssr-umi-egg-template/template/app/web/http/config.ts
+ * @LastEditTime: 2021-01-07 14:16:41
+ * @FilePath: /merchant-ssr/app/web/http/config.ts
  * @Description: http通用配置
  */
 import axios from 'axios';
-import { isBrowser } from 'umi'
 import { Toast } from 'antd-mobile';
+import {isBrowser} from 'lx-json-component/src/utils'
+
+
+export const getApiUrl = () => {
+	return isBrowser() ? API_URL : SERVER_API_URL
+}
+
+export const getIdUrl = () => {
+	return isBrowser() ? ID_URL : SERVER_ID_URL
+}
 
 
 const ORDER_STATUS = {
@@ -23,7 +32,7 @@ const ORDER_STATUS = {
  */
 
 const HTTP = axios.create({
-  baseURL: isBrowser() ? API_URL : SERVER_API_URL,
+  baseURL: getApiUrl(),
   headers: {
     Authorization: '',
   },
@@ -39,7 +48,7 @@ HTTP.interceptors.request.use(
   async function(config) {
     // Do something before request is sent
     const jwtToken = isBrowser() ? localStorage.getItem('jwtToken') : ''
-    console.log('cache jwtToken', jwtToken)
+    // console.log('cache jwtToken', jwtToken)
     return {
       ...config,
       headers: {
@@ -128,7 +137,7 @@ const serviceDeconstruct = async (axiosPromise:any, options: Options = {}) => {
       throw new Error(res.data.msg);
     }
   } catch (e) {
-    isBrowser() && Toast.info(e.message || e.toString());
+    isBrowser() && Toast.fail(e.message || e.toString());
     throw e;
   }
 };

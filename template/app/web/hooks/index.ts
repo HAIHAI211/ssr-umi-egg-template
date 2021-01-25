@@ -2,8 +2,8 @@
  * @Author: Harrison
  * @Date: 2021-01-02 17:30:14
  * @LastEditors: Harrison
- * @LastEditTime: 2021-01-06 10:23:55
- * @FilePath: /ssr-umi-egg-template/template/app/web/hooks/index.ts
+ * @LastEditTime: 2021-01-04 14:38:51
+ * @FilePath: /merchant-ssr/app/web/hooks/index.ts
  * @Description: file content
  */
 import React, { useEffect } from "react"
@@ -22,7 +22,7 @@ export const useAuth = ({ isWechat }: IUseWechatAuthProps) => {
 				data: { jwtToken, userId, openId },
 			} = await checkLogin()
 			console.log("jwtToken userId openId", jwtToken, userId, openId)
-			console.log("history", history)
+			// console.log("history", history)
 			const wechatRedirectURI = getWechatRedirectURI(openId)
 			if (wechatRedirectURI) {
 				// !IS_PROD && alert(wechatRedirectURI)
@@ -45,9 +45,12 @@ export const useAuth = ({ isWechat }: IUseWechatAuthProps) => {
 		const redirect_uri = `${encodeURIComponent(
 			window.btoa(window.location.origin + window.location.pathname)
 		)}${window.location.search}`
-		const result = IS_PROD
-			? `https://harbor-ex.linxuan.site/mp/jump/auth/${appId}/${redirect_uri}`
-			: `https://harbor-ex-test.linxuan.site/mp/jump/auth/${appId}/${redirect_uri}`
+		
+		const result = `${ID_URL}/mp/jump/auth/${appId}/${redirect_uri}`
+
+		if (IS_TEST) {
+			alert('重定向地址' + result)
+		}
 		return result
 	}
 
@@ -55,4 +58,3 @@ export const useAuth = ({ isWechat }: IUseWechatAuthProps) => {
 		auth()
 	}, [])
 }
-
