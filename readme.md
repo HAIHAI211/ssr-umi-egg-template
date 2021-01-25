@@ -19,3 +19,24 @@
 - 函数声明不可以立即执行，但函数表达式可以
 - !functionxx(){}() 和(functionxx(){})()都是通过将函数声明转为表达式并立即执行来实现模块化的
 - 因为函数声明提升，而表达式不会，所以更好的模块化。
+
+## csr & ssr
+
+${buildType}-${env}
+
+csr IS_CSR=true isBrowser=true
+
+    本地 IS_DEV=true
+    测试 IS_TEST=true
+    生产 IS_PROD = true
+
+ssr IS_CSR=false
+
+    本地 local
+        dev-server 
+        egg-server 
+            server render => isServer=true isBrowser=true
+    测试 test、 生产 prod
+        egg-server
+            server render => isServer=true isBrowser=false
+            client render => isServer=false isBrowser=true
