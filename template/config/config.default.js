@@ -16,9 +16,6 @@ module.exports = (appInfo, appConfig = {}) => {
   const isProd = appInfo.env === "prod";
 
   config.assets = {
-    // publicPath: !isProd ? "/public" : "//lx-cdn.highso.com.cn/lx-gw/",
-    // publicPath: !isProd ? "" : "",
-    // url: !isProd ? "" : "//lx-cdn.highso.com.cn/lx-gw/",
     devServer: {
       command: "umi dev",
       env: {

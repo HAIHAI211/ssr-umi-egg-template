@@ -6,13 +6,8 @@ const {
   ID_URL_PROD,
 } = require("lx-json-component/src/constants");
 
-const publicPath = "//lx-cdn.highso.com.cn/merchant-ssr/";
 export default defineConfig({
   ssr: false,
-  manifest: {
-    publicPath,
-  },
-  publicPath,
   define: {
     ID_URL: ID_URL_PROD,
     API_URL: API_URL_PROD,

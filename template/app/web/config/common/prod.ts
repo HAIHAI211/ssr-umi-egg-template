@@ -1,4 +1,9 @@
+const publicPath = "//lx-cdn.highso.com.cn/merchant-ssr/";
 const PROD_COMMON_CONFIG = {
+  manifest: {
+    publicPath,
+  },
+  publicPath,
   scripts: [
     {
       // arms
