@@ -34,6 +34,7 @@
     "node": ">=10.0.0"
   },
   "dependencies": {
+    "antd-mobile": "^2.3.4",
     "jweixin-module": "^1.6.0",
     "axios": "^0.21.0",
     "clipboard": "^2.0.6",
