@@ -23,13 +23,19 @@ module.exports = {
 			type: "string",
 			message: "作者",
 			required: false,
-			default: "",
+			default: "harrison",
 		},
 		cdn: {
 			type: "string",
-			message: "生产环境publicPath",
-			required: false,
-			default: "//lx-cdn.highso.com.cn/lx-gw/",
+			message: "cdn名称",
+			required: true,
+			default: "",
 		},
+		armspid: {
+			type: "string",
+			message: "arms的pid",
+			required: true,
+			default: ""
+		}
 	},
 }
