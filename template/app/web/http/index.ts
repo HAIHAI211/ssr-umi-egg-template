@@ -280,11 +280,9 @@ export async function fetchSaleChance(
 ): Promise<IReturn<IFetchSaleChanceReturn>> {
   const { isMerchant, ...otherProps } = props;
   return serviceDeconstruct(
-    HTTP.get("/sale-chance/get", {
-      params: {
-        ...otherProps,
-        adUrl: encodeURI(window.location.href),
-      },
+    HTTP.post("/sale-chance/post", {
+      ...otherProps,
+      adUrl: encodeURI(window.location.href),
     })
   );
 }
